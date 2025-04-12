@@ -55,14 +55,14 @@ def _xacro_impl(ctx):
     else:
         # This is the case that we are an external module
         output_path = out.dirname
-    root_dir = output_path + '/' + temp_dir
+    root_dir = output_path + temp_dir
 
     arguments = [
         "-o",
         out.path,
         "--root-dir",
         root_dir,
-        input_path
+        input_path,
     ]
     arguments += ["{}:={}".format(arg, val) for arg, val in ctx.attr.arguments.items()]
 
@@ -97,7 +97,7 @@ xacro_file = rule(
         "deps": attr.label_list(providers = [XacroInfo]),
         "_xacro": attr.label(
             default = "@xacro//:xacro",
-            cfg = "host",
+            cfg = "exec",
             executable = True,
         ),
     },

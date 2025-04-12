@@ -39,6 +39,7 @@ import os
 import re
 import sys
 import xml.dom.minidom
+import xml.parsers.expat
 
 from copy import deepcopy
 from .cli import process_args
